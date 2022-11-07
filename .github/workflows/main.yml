@@ -71,6 +71,8 @@ jobs:
         script: |
           # Выполняет pull образа с DockerHub
           sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPOSITORY_NAME }}:latest
-          #остановка всех контейнеров
+          # запускает daemon-serivce (dockerd) на сервере
+          sudo dockerd
+          # остановка всех контейнеров
           sudo docker stop $(sudo docker ps -a -q)
           sudo docker run --rm -d -p 5000:5000 ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPOSITORY_NAME }}
