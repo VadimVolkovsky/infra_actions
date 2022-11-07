@@ -69,6 +69,7 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         passphrase: ${{ secrets.PASSPHRASE }} # Если ваш ssh-ключ защищён фразой-паролем
         script: |
+          sudo dockerd
           # Выполняет pull образа с DockerHub
           sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPOSITORY_NAME }}:latest
           # остановка всех контейнеров
